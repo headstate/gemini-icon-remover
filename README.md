@@ -83,55 +83,9 @@ For each target pixel:
 
 The algorithm repeats the priority calculation and patch matching until:
 - All pixels are filled, or
-- Maximum iterations reached (500)
+- Maximum iterations reached (50,000)
 
-### 5. Quick Inpainting (Optimization)
 
-For small regions (< 5% of image), a faster diffusion-based method is used:
-- Each unknown pixel is filled with a weighted average of its neighbors
-- The process iterates 100-200 times
-- Much faster than patch-based method for small watermarks
-
-## Deployment to Cloudflare Pages
-
-### Option 1: Direct Upload
-
-1. Go to [Cloudflare Pages](https://pages.cloudflare.com/)
-2. Click "Create a project"
-3. Select "Direct Upload"
-4. Give your project a name (e.g., "gemini-icon-remover")
-5. Click "Create project"
-6. Drag and drop all files from this folder:
-   ```
-   gemini-icon-remover/
-   ├── index.html
-   ├── css/
-   │   └── style.css
-   ├── js/
-   │   ├── app.js
-   │   └── inpainter.js
-   └── README.md
-   ```
-7. Click "Deploy site"
-
-### Option 2: Git Integration
-
-1. Push this code to a GitHub or GitLab repository
-2. Go to [Cloudflare Pages](https://pages.cloudflare.com/)
-3. Click "Create a project"
-4. Select "Connect to Git"
-5. Choose your repository
-6. Configure build settings:
-   - **Build command**: (leave empty)
-   - **Build output directory**: `/`
-7. Click "Save and Deploy"
-
-### Custom Domain (Optional)
-
-1. In your Cloudflare Pages dashboard, go to "Custom domains"
-2. Click "Set up a custom domain"
-3. Enter your domain name
-4. Follow the DNS configuration instructions
 
 ## File Structure
 
