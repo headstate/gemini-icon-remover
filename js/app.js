@@ -395,18 +395,7 @@ class GeminiIconRemover {
             this.updateProgressText(`Removing watermark... ${Math.round(progress * 100)}%`);
         };
         
-        // Use quick inpaint for small regions, full inpaint for larger ones
-        const maskSize = mask.filter(v => v === 255).length;
-        const totalSize = mask.length;
-        
-        let result;
-        if (maskSize / totalSize < 0.05) {
-            // Small region - use quick inpaint
-            result = this.inpainter.quickInpaint(this.currentImageData, mask, 200);
-        } else {
-            // Larger region - use full inpaint
-            result = this.inpainter.inpaint(this.currentImageData, mask, progressCallback);
-        }
+        let result = this.inpainter.inpaint(this.currentImageData, mask, progressCallback);
         
         // Update canvas with result
         this.mainCtx.putImageData(result, 0, 0);
