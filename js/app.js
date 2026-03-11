@@ -351,12 +351,12 @@ class GeminiIconRemover {
     getMousePos(e) {
         const rect = this.mainCanvas.getBoundingClientRect();
 
-        // e.clientX is relative to the viewport.
-        // rect.left/top already account for the wrapper's translation and scaling!
-        // So we just subtract the rect bounds and divide by scale to get original pixels.
+        const scaleX = this.mainCanvas.width / rect.width;
+        const scaleY = this.mainCanvas.height / rect.height;
+
         return {
-            x: (e.clientX - rect.left) / this.scale,
-            y: (e.clientY - rect.top) / this.scale
+            x: (e.clientX - rect.left) * scaleX,
+            y: (e.clientY - rect.top) * scaleY
         };
     }
 
