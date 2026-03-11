@@ -28,7 +28,9 @@
 }
 
 /* Reset & Base */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -310,9 +312,12 @@ body {
     position: relative;
     display: inline-block;
     max-width: 100%;
+    transform-origin: 0 0;
+    will-change: transform;
 }
 
 #main-canvas,
+#before-canvas,
 #overlay-canvas {
     display: block;
     max-width: 100%;
@@ -321,11 +326,67 @@ body {
     box-shadow: var(--shadow-sm);
 }
 
+#before-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
 #overlay-canvas {
     position: absolute;
     top: 0;
     left: 0;
-    /* pointer-events: none; */
+    pointer-events: none;
+    z-index: 2;
+}
+
+/* Before/After Slider */
+.slider-handle {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    bottom: 0;
+    width: 2px;
+    z-index: 10;
+    cursor: ew-resize;
+    transform: translateX(-50%);
+}
+
+.slider-handle.hidden {
+    display: none;
+}
+
+.slider-line {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 2px;
+    background: white;
+    transform: translateX(-50%);
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+}
+
+.slider-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 32px;
+    height: 32px;
+    background: white;
+    color: var(--bg-primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+}
+
+.slider-button svg {
+    width: 16px;
+    height: 16px;
 }
 
 .selection-preview {
@@ -548,10 +609,22 @@ body {
 /* ============================================
    Canvas Cursor Styles
    ============================================ */
-.canvas-wrapper.manual-mode {
+.canvas-container {
+    cursor: grab;
+}
+
+.canvas-container:active {
+    cursor: grabbing;
+}
+
+.canvas-container.manual-mode {
     cursor: crosshair;
 }
 
-.canvas-wrapper.processing {
+.canvas-container.wand-mode {
+    cursor: crosshair;
+}
+
+.canvas-container.processing {
     cursor: wait;
 }

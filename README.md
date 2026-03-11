@@ -9,11 +9,12 @@ A client-side web application for removing Gemini AI watermarks from images. Thi
 ## Features
 
 - **Auto-detect mode**: Automatically detects and removes watermarks in image corners
-- **Manual mode**: Draw on the image to mark specific areas for removal
-- **Undo/Redo**: Full history management for non-destructive editing
-- **Client-side processing**: Your images never leave your browser
-- **Responsive design**: Works on desktop and mobile devices
-- **Dark mode UI**: Easy on the eyes for image editing tasks
+- **Magic Wand mode**: Instantly select solid or similar colored watermarks with a click using the adjustable tolerance flood-fill tool
+- **Manual Brush mode**: Draw targeted masks over watermarks that auto-detection misses
+- **Web Worker processing**: All heavy inpainting math happens in the background, ensuring a smooth, freeze-free UI
+- **Advanced Navigation**: Zoom in/out, fit to screen, and pan effortlessly via middle-click, spacebar dragging, or multi-touch gestures on mobile
+- **Before & After Slider**: Interactive slider allows you to swipe to instantly compare the original image with the cleaned outcome
+- **Client-side processing**: Works entirely locally via your browser without needing any server dependencies or API calls
 
 ## How to Use
 
